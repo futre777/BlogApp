@@ -25,7 +25,7 @@ SECRET_KEY = '&35-gr!my0n6rx8tad4uxaon3)pr&2vai$&n+&r4=z@+k9513t'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['147.182.191.143', 'www.joaofranccisco.com']
+ALLOWED_HOSTS = ['147.182.191.143', 'www.joaofranccisco.com', 'joaofranccisco.com']
 
 
 # Application definition
