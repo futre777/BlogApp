@@ -5,6 +5,7 @@
 #   * Make sure each ForeignKey and OneToOneField has `on_delete` set to the desired behavior
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
+#from _typeshed import Self
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
@@ -112,6 +113,7 @@ class BlogappPost(models.Model):
     imagem = models.CharField(max_length=100)
     referencia = models.CharField(max_length=500)
     ficheiro = models.CharField(max_length=100)
+  
 
     class Meta:
         managed = False
@@ -168,6 +170,7 @@ class BlogMessage(models.Model):
         db_table = 'blog_message'
 
 
+
 class BlogPost(models.Model):
     titulo = models.CharField(max_length=100)
     abstracto = models.TextField()
@@ -175,11 +178,15 @@ class BlogPost(models.Model):
     imagem = models.ImageField(upload_to='post_pics')
     referencia = models.URLField(default='none.com', max_length=500)
     ficheiro = models.FileField(default='none', upload_to='documents')
+    # love = models.ForeignKey("self", on_delete=models.CASCADE, blank=True, null=True, related_name='loves')
+    # clap = models.ForeignKey("self", on_delete=models.CASCADE, blank=True, null=True, related_name='claps')
+    # read = models.ForeignKey("self", on_delete=models.CASCADE, blank=True, null=True, related_name='reads')
+
     def __str__(self):
         return self.titulo  
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'blog_post'
     def save(self):
         super().save()
@@ -189,13 +196,26 @@ class BlogPost(models.Model):
             img = img.resize((750, 500), Image.ANTIALIAS)   
             img.save(self.imagem.path)
 
+class BlogReaction(models.Model):
+    love = models.ForeignKey(BlogPost, on_delete=models.CASCADE, blank=True, null=True, related_name='loves')
+    clap = models.ForeignKey(BlogPost, on_delete=models.CASCADE, blank=True, null=True, related_name='claps')
+    read = models.ForeignKey(BlogPost, on_delete=models.CASCADE, blank=True, null=True, related_name='reads')
+
 class BlogComment(models.Model):
     nome = models.CharField(max_length=120)
     mensagem = models.TextField()
-    #post = models.ForeignKey(BlogPost, on_delete=models.CASCADE, primary_key=True)
+    parent = models.ForeignKey("self", on_delete=models.CASCADE, blank=True, null=True, related_name='replies')
     post = models.IntegerField()
+
     def __str__(self):
         return self.nome
+
+# class BlogCommentReply(models.Model):
+#     nome = models.CharField(max_length=120)
+#     resposta = models.TextField()
+#     comment_id = models.IntegerField(default=0)
+#     def __str__(self):
+#         return self.nome
 
 class BlogProject(models.Model):
     titulo = models.CharField(max_length=100)

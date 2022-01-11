@@ -61,10 +61,33 @@ body:after {
     right: 0;
     z-index: 999;
     background: rgba(0, 0, 0, 0.2); }
-
+.btn-rep {
+  font-size: 13px;
+  border-radius: 31px;
+  padding: 3px 14px; }
+  .btn:hover, .btn:active, .btn:focus {
+    outline: none;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important; }
+  .btn.btn-primary.ref {
+    background: black;
+    border-color: #a2c0be;
+    color: #fff;
+  }
+  .btn.btn-primary {
+    background: #a2c0be;
+    border-color: #a2c0be;
+    color: #fff; }
+    .btn.btn-primary:hover {
+      background: #000;
+      border-color: #000;
+      color: #fff; }
+    .btn.btn-primary.btn-black--hover:hover {
+      background: #666666;
+      color: #fff; }
 .btn {
-  font-size: 16px;
-  border-radius: 30px;
+  font-size: 13px;
+  border-radius: 31px;
   padding: 10px 30px; }
   .btn:hover, .btn:active, .btn:focus {
     outline: none;
@@ -91,12 +114,14 @@ body:after {
   line-height: 1 !important; }
 
 .bg-black {
-  background: #000; }
+  background: #000; 
+}
 
 .form-control {
   height: 43px;
   border-radius: 5px;
   font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; }
+  
   .form-control:active, .form-control:focus {
     border-color: #a2c0be; }
   .form-control:hover, .form-control:active, .form-control:focus {
@@ -110,7 +135,7 @@ body:after {
   padding: 2.5em 0; }
   @media (min-width: 768px) {
     .site-section {
-      padding: 5em 0; } }
+      padding: 2em 0; } }
   .site-section.site-section-sm {
     padding: 4em 0; }
 
@@ -124,7 +149,7 @@ body:after {
       font-size: 3rem; } }
 
 .site-footer {
-  padding: 4em 0;
+  padding: 1em 0;
   background: #333333; }
   @media (min-width: 768px) {
     .site-footer {
@@ -1889,7 +1914,7 @@ figure figcaption {
   color: #000; }
 
 .trainers, .bg-primary {
-  color: #567876; }
+  color: #212529; }
   .trainers .heading, .bg-primary .heading {
     color: #405a58; }
 

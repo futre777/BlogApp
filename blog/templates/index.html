@@ -348,6 +348,22 @@
                         <p class="mb-4">{{ post.abstracto }}</p>
                         <!-- <p><a href="{% url 'home'  %}media/{{post.ficheiro}}" target="_blank" class="btn btn-primary">Continuar a ler</a></p> -->
                         <p><a href="{% url 'pub'  post_id=post.id %}" target="_blank" class="btn btn-primary">Continuar a ler</a></p>
+                        <form class="p-5comment contact-form" method="POST" action="{% url 'reaction' post_id=post.id %}">
+                          {% csrf_token %} 
+                          <div class="form-comment">
+                            {{formR.love}}
+                           <input type="hidden" name="parent_id" value="{{comments.id}}">
+                          </div>
+                          <div class="form-comment2">
+                            {{formR.clap}} 
+                            {{formR.read}}  
+                          </div >
+                          <div class="resp-icon"><span class="icon-play"></span></div>
+                          <div class="form-comment3">
+                            <input type="submit" value="" class="btn-rep btn-transp btn-md text-white">
+                          </div>
+                          </div>
+                        </form>
                     </div>
                 {%endif%} 
               {%else%}   
@@ -433,7 +449,7 @@
                           <img src="{{proj.imagem.url}}" class="img-fluid rounded-circle mx-auto">
                         </figure>
                         <div class="blog-entry-text">
-                          <blockquote class="mb-4"><h3><a href="single.html">{{ proj.titulo }}</a></h3>
+                          <blockquote class="mb-4"><h3>{{ proj.titulo }}</h3>
                           <p class="pro">{{proj.abstracto}}</p>
                           <p><a href="{{ proj.referencia }}" target="_blank" class="btn btn-primary">Continuar a ler</a></p></blockquote>
                         </div>
@@ -638,14 +654,14 @@
     
     <footer class="site-footer">
       <div class="container">
-        <div class="row">
+        <!-- <div class="row">
           <div class="col-md-9">
             <div class="row">
-              <div class="col-md-3">
+               <div class="col-md-3">
                 <h2 class="footer-heading mb-4">Segue-me</h2>
                 <a href="#" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
                 <a href="#" class="pl-3 pr-3"><span class="icon-linkedin"></span></a>
-              </div>
+              </div> 
               <div class="col-md-3">
                 <h2 class="footer-heading mb-4">Telefone</h2>
                 <span>&emsp;&emsp;+244992360149</span><br>
@@ -658,17 +674,14 @@
             
           </div>
           
-        </div>
-        
-        <div class="row pt-5 mt-5 text-center">
+        </div> -->
+      
+        <div class="row mt-5 text-center">
           <div class="col-md-12">
-            <div class="border-top pt-5">
-              <p class="copyright"><small>
-              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved 
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></small></p>
-        
-            </div>
+            <p class="copyright" style="text-align: center; "><small>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved </small></p>
+            <!-- <div class="border-top pt-5">
+              <p class="copyright"><small>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved </small></p>
+            </div> -->
           </div>
           
         </div>
