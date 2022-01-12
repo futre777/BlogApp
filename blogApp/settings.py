@@ -25,7 +25,7 @@ SECRET_KEY = '&35-gr!my0n6rx8tad4uxaon3)pr&2vai$&n+&r4=z@+k9513t'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['159.223.176.54', 'www.joaofranccisco.com', 'joaofranccisco.com', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost','159.223.176.54', 'www.joaofranccisco.com', 'joaofranccisco.com', '127.0.0.1']
 
 
 # Application definition
