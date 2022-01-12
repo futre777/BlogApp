@@ -348,22 +348,7 @@
                         <p class="mb-4">{{ post.abstracto }}</p>
                         <!-- <p><a href="{% url 'home'  %}media/{{post.ficheiro}}" target="_blank" class="btn btn-primary">Continuar a ler</a></p> -->
                         <p><a href="{% url 'pub'  post_id=post.id %}" target="_blank" class="btn btn-primary">Continuar a ler</a></p>
-                        <form class="p-5comment contact-form" method="POST" action="{% url 'reaction' post_id=post.id %}">
-                          {% csrf_token %} 
-                          <div class="form-comment">
-                            {{formR.love}}
-                           <input type="hidden" name="parent_id" value="{{comments.id}}">
-                          </div>
-                          <div class="form-comment2">
-                            {{formR.clap}} 
-                            {{formR.read}}  
-                          </div >
-                          <div class="resp-icon"><span class="icon-play"></span></div>
-                          <div class="form-comment3">
-                            <input type="submit" value="" class="btn-rep btn-transp btn-md text-white">
-                          </div>
-                          </div>
-                        </form>
+                        
                     </div>
                 {%endif%} 
               {%else%}   
