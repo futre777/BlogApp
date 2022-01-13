@@ -1,7 +1,7 @@
 from os import initgroups
 from django import forms
 from django.http import request 
-from blog.models import BlogMessage, BlogComment, BlogPost, BlogReaction
+from blog.models import BlogMessage, BlogComment, BlogPost
 
 class MessageForm(forms.ModelForm):
 	def __init__(self, *args, **kwargs):
@@ -40,20 +40,20 @@ class ReplyForm(forms.ModelForm):
 		model = BlogComment
 		fields = ['nome', 'mensagem', 'post'] 
 
-class reactionForm(forms.ModelForm):
-	def __init__(self, post_id=None, *args, **kwargs):
-		super(reactionForm, self).__init__(*args, **kwargs)
-		if post_id == None:	
-			#p = BlogPost.objects.get(id=post_id)
-			self.fields['love']
-			self.fields['clap']
-			self.fields['read']
-		else:
-			p = BlogPost.objects.get(id=post_id)
-			self.fields['love'].widget = forms.IntegerField(initial=p.id)
-			self.fields['clap'].widget = forms.IntegerField(initial=p.id)
-			self.fields['read'].widget = forms.IntegerField(initial=p.id)
-	class Meta:
-		model = BlogReaction
-		fields = ['love', 'clap', 'read'] 
+# class reactionForm(forms.ModelForm):
+# 	def __init__(self, post_id=None, *args, **kwargs):
+# 		super(reactionForm, self).__init__(*args, **kwargs)
+# 		if post_id == None:	
+# 			#p = BlogPost.objects.get(id=post_id)
+# 			self.fields['love']
+# 			self.fields['clap']
+# 			self.fields['read']
+# 		else:
+# 			p = BlogPost.objects.get(id=post_id)
+# 			self.fields['love'].widget = forms.IntegerField(initial=p.id)
+# 			self.fields['clap'].widget = forms.IntegerField(initial=p.id)
+# 			self.fields['read'].widget = forms.IntegerField(initial=p.id)
+# 	class Meta:
+# 		model = BlogReaction
+# 		fields = ['love', 'clap', 'read'] 
 

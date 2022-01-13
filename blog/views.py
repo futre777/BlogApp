@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import BlogComment, BlogPost, BlogGallery, BlogReaction, BlogappProfile, BlogMessage, BlogProject
-from blog.form import CommentForm, MessageForm, ReplyForm, reactionForm
+from blog.form import CommentForm, MessageForm, ReplyForm
 from django.views import View
 
 
