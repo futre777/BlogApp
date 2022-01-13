@@ -21,7 +21,7 @@ def home(request):
 
     if request.method == "POST":
         form = MessageForm(request.POST)
-        formR = reactionForm(request.POST, None)
+        #formR = reactionForm(request.POST, None)
         if form.is_valid():
             form.save()
             form = MessageForm()
@@ -32,12 +32,12 @@ def home(request):
             form = MessageForm()
             #formR = reactionForm(None)
             content['form'] = form
-            content['formR'] = formR
+            #content['formR'] = formR
     else:
         form = MessageForm()
         #formR = reactionForm(None)
         content['form'] = form
-        content['formR'] = formR        
+       # content['formR'] = formR        
 
     return render(request, 'index.html', content)
 
