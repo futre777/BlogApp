@@ -136,3 +136,4 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 #     os.path.join(BASE_DIR, 'static'),
 # )
 X_FRAME_OPTIONS = 'SAMEORIGIN'
+CSRF_TRUSTED_ORIGINS = ['https://*.joaofranccisco.com']
