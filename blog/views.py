@@ -25,17 +25,17 @@ def home(request):
         if form.is_valid():
             form.save()
             form = MessageForm()
-            formR = reactionForm(None)
+            #formR = reactionForm(None)
 			#messages.success(request, f' Tua mensagem foi enviada com sucesso !')
             return redirect('home')
         else:
             form = MessageForm()
-            formR = reactionForm(None)
+            #formR = reactionForm(None)
             content['form'] = form
             content['formR'] = formR
     else:
         form = MessageForm()
-        formR = reactionForm(None)
+        #formR = reactionForm(None)
         content['form'] = form
         content['formR'] = formR        
 
