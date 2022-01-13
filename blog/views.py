@@ -41,41 +41,41 @@ def home(request):
 
     return render(request, 'index.html', content)
 
-def reaction(request, post_id):
-    posts = BlogPost.objects.all() 
-    gallerys = BlogGallery.objects.all()
+# def reaction(request, post_id):
+#     posts = BlogPost.objects.all() 
+#     gallerys = BlogGallery.objects.all()
     
-    #message = BlogMessage.objects.all()
+#     #message = BlogMessage.objects.all()
     
-    content = {
-            'posts': posts [::-1],
-            'gallery': gallerys [::-1],
-            'profile': BlogappProfile.objects.all(),
-            'project': BlogProject.objects.all(),
-            'reaction': BlogReaction.objects.all()
-    }
+#     content = {
+#             'posts': posts [::-1],
+#             'gallery': gallerys [::-1],
+#             'profile': BlogappProfile.objects.all(),
+#             'project': BlogProject.objects.all(),
+#             'reaction': BlogReaction.objects.all()
+#     }
 
-    if request.method == "POST":
-        form = MessageForm(request.POST)
-        formR = reactionForm(request.POST, post_id)
-        if form.is_valid():
-            form.save()
-            form = MessageForm()
-            formR = reactionForm(post_id)
-			#messages.success(request, f' Tua mensagem foi enviada com sucesso !')
-            return redirect('home')
-        else:
-            form = MessageForm()
-            formR = reactionForm(post_id)
-            content['form'] = form
-            content['formR'] = formR
-    else:
-        form = MessageForm()
-        formR = reactionForm(post_id)
-        content['form'] = form
-        content['formR'] = formR       
+#     if request.method == "POST":
+#         form = MessageForm(request.POST)
+#         formR = reactionForm(request.POST, post_id)
+#         if form.is_valid():
+#             form.save()
+#             form = MessageForm()
+#             formR = reactionForm(post_id)
+# 			#messages.success(request, f' Tua mensagem foi enviada com sucesso !')
+#             return redirect('home')
+#         else:
+#             form = MessageForm()
+#             formR = reactionForm(post_id)
+#             content['form'] = form
+#             content['formR'] = formR
+#     else:
+#         form = MessageForm()
+#         formR = reactionForm(post_id)
+#         content['form'] = form
+#         content['formR'] = formR       
 
-    return render(request, 'index.html', content)
+#     return render(request, 'index.html', content)
 
 
 def pub(request, post_id):
