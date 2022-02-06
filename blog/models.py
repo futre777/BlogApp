@@ -158,17 +158,6 @@ class BlogGallery(models.Model):
         db_table = 'blog_gallery'
 
 
-class BlogMessage(models.Model):
-    nome = models.CharField(max_length=120)
-    email = models.EmailField()
-    mensagem = models.TextField()
-    def __str__(self):
-        return self.nome
-
-    class Meta:
-        managed = False
-        db_table = 'blog_message'
-
 
 
 class BlogPost(models.Model):
@@ -196,6 +185,19 @@ class BlogPost(models.Model):
             img = img.resize((750, 500), Image.ANTIALIAS)   
             img.save(self.imagem.path)
 
+class BlogMessage(models.Model):
+    nome = models.CharField(max_length=120)
+    email = models.EmailField()
+    mensagem = models.TextField()
+    post = models.CharField(max_length=120)
+    def __str__(self):
+        return self.nome
+
+    class Meta:
+        managed = True
+        db_table = 'blog_message'
+
+
 class BlogReaction(models.Model):
     love = models.ForeignKey(BlogPost, on_delete=models.CASCADE, blank=True, null=True, related_name='loves')
     clap = models.ForeignKey(BlogPost, on_delete=models.CASCADE, blank=True, null=True, related_name='claps')
@@ -203,6 +205,7 @@ class BlogReaction(models.Model):
 
 class BlogComment(models.Model):
     nome = models.CharField(max_length=120)
+    email = models.EmailField()
     mensagem = models.TextField()
     parent = models.ForeignKey("self", on_delete=models.CASCADE, blank=True, null=True, related_name='replies')
     post = models.IntegerField()

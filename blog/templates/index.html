@@ -76,12 +76,13 @@
             <nav class="site-navigation position-relative text-right" role="navigation">
 
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                <li><a href="#home-section" class="nav-link">Página Principal</a></li>
+                <!-- <li><a href="#home-section" class="nav-link">Página Principal</a></li> -->
                 <!-- <li><a href="#about-section" class="nav-link">Biografia</a></li> -->
-                <li><a href="#pub-section" class="nav-link">Publicações</a></li>
-                <li><a href="#project-section" class="nav-link">Projectos</a></li>
-                <li><a href="#gallery-section" class="nav-link">Galeria</a></li>
-                <li><a href="#contact-section" class="nav-link">Contacto</a></li>
+                <li><a href="#pub-section" class="nav-link"><span class="icon-pencil ico-size-menu"> Publicações</span></a></li>
+                
+                <li><a href="#project-section" class="nav-link"><span class="icon-book ico-size-menu"> Projectos</span></a></li>
+                <li><a href="#gallery-section" class="nav-link"><span class="icon-photo ico-size-menu"> Galeria</span></a></li>
+                <!-- <li><a href="#contact-section" class="nav-link">Contacto</a></li> -->
               </ul>
             </nav>
           </div>
@@ -148,8 +149,9 @@
                    QUANDO A TRISTEZA CHEGA. PORQUE APENAS SE VOCÊ ESTEVE NOS 
                   MAIS PROFUNDOS VALES VOCÊ PODERÁ UM DIA SABER O QUÃO MAGNÍFICO É SE ESTAR NO TOPO DA MAIS ALTA MONTANHA."</p>
             </div> -->
-            <a href="http://www.linkedin.com/in/francisco-francisco" class="pl-3 pr-3"><span class="icon-linkedin"></span></a>
-            
+            <a href="http://www.linkedin.com/in/francisco-francisco" class="pl-3 pr-3"><span class="icon-linkedin ico-size"> Francisco Joan</span></a>
+            <span class="icon-phone ico-size"> +244 992360149     </span> 
+            <span class="icon-comments ico-size"> fran.iuris19@gmail.com</span>
           </div>
          
            <div class="col-md-5 align-self-end text-center text-md-right">
@@ -376,42 +378,7 @@
     </section> 
   
 
-    <section class="site-section bg-light" id="services-section">
-        <div class="container">
-          <div class="row justify-content-center" data-aos="fade-up">
-            <div class="col-lg-6 text-center heading-section mb-5">
-              <h2 class="text-black mb-2">Conferências</h2>
-              <p>Sem sonhos, a vida não tem brilho. Sem metas, os sonhos não têm alicerces. Sem prioridades, os sonhos não se tornam reais..</p>
-            </div>
-          </div>
-          <div class="row space">
-            <div class="col-md-6 mb-4 col-lg-4 ux" data-aos="fade-up" data-aos-delay="">
-              
-              <div class="block_service">
-                <img class="imgConnf" src="{% static 'images/sys.png'%}" alt="Image mb-5">
-                <h3>Conferência de sustentablidade</h3>
-                <p> Atores de mercado sustentável para o comércio responsável, Oslo University (2019). </p>
-              </div>
-  
-            </div>
-            <div class="col-md-6 mb-4 col-lg-4 ux" data-aos="fade-up"  data-aos-delay="100">
-              <div class="block_service">
-                <img class="imgConnf" src="{% static 'images/humana.png'%}" alt="Image mb-5">
-                <h3>Princípio da Dignidade Humana</h3>
-                <p>Princípio da Dignidade Humana, Teorias do Relativismo e Universalismo nos Direitos (2019). </p>
-              </div>
-            </div>
-            <div class="col-md-6 mb-4 col-lg-4 ux" data-aos="fade-up"  data-aos-delay="200">
-              <div class="block_service">
-                <img class="imgConnf" src="{% static 'images/clima.svg'%}" alt="Image mb-5">
-                <h3>Alterações Climaticas</h3>
-                <p> Workshop sobre Alterações Climaticas - Prespectivas e Desafios: Desenvolvimento Sustentável, 
-                    Universidade Católica de Angola, Instituto Superior Dom-Bosco (2018). </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+   
 
       <section class="site-section bg-light block-13" id="project-section" data-aos="fade">
         <div class="container">
@@ -421,7 +388,7 @@
               <h2 class="text-black mb-2">Projectos</h2>
             </div>
           </div>
-          <div  data-aos="fade-up" data-aos-delay="200">
+          <!-- <div  data-aos="fade-up" data-aos-delay="200">
             <div class="owl-carousel nonloop-block-13">
               
               {% for proj in project %}
@@ -445,6 +412,66 @@
               </div>
               {%endfor%}
               
+            </div> -->
+            <div  data-aos="fade-up" data-aos-delay="200">
+        <div class="owl-carousel nonloop-block-13">
+          
+          {% for proj in project %}
+              <div>
+                <div class="block-testimony-1 text-center">
+                  
+                  <blockquote class="mb-4">
+                    <h3><p class="rodape">&ldquo;{{proj.titulo}}&rdquo;</p></h3>
+                    <p>&ldquo;{{proj.abstracto}}&rdquo;</p>
+                    <p class="rodape"><a href="{{ proj.referencia }}" target="_blank" class="btn btn-primary">Continuar a ler</a></p></blockquote>
+                  </blockquote>
+  
+                  <figure>
+                    <img src="{{proj.imagem.url}}" alt="Image" class="img-fluid rounded-circle mx-auto">
+                  </figure>
+                  
+                </div>
+              </div>
+  
+          {%endfor%}
+          
+        </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="site-section bg-light" id="services-section">
+        <div class="container">
+          <div class="row justify-content-center" data-aos="fade-up">
+            <div class="col-lg-6 text-center heading-section mb-5">
+              <h2 class="text-black mb-2">Conferências</h2>
+              <p>Sem sonhos, a vida não tem brilho. Sem metas, os sonhos não têm alicerces. Sem prioridades, os sonhos não se tornam reais..</p>
+            </div>
+          </div>
+          <div class="row space">
+            <div class="col-md-6 mb-4 col-lg-4 ux" data-aos="fade-up" data-aos-delay="">
+              
+              <div class="block_service">
+                <img class="imgConf" src="{% static 'images/sys.png'%}" alt="Image mb-5">
+                <h3>Conferência de sustentablidade</h3>
+                <p> Atores de mercado sustentável para o comércio responsável, Oslo University (2019). </p>
+              </div>
+  
+            </div>
+            <div class="col-md-6 mb-4 col-lg-4 ux" data-aos="fade-up"  data-aos-delay="100">
+              <div class="block_service">
+                <img class="imgConf" src="{% static 'images/humana.png'%}" alt="Image mb-5">
+                <h3>Princípio da Dignidade Humana</h3>
+                <p>Princípio da Dignidade Humana, Teorias do Relativismo e Universalismo nos Direitos (2019). </p>
+              </div>
+            </div>
+            <div class="col-md-6 mb-4 col-lg-4 ux" data-aos="fade-up"  data-aos-delay="200">
+              <div class="block_service">
+                <img class="imgConf" src="{% static 'images/clima.svg'%}" alt="Image mb-5">
+                <h3>Alterações Climaticas</h3>
+                <p> Workshop sobre Alterações Climaticas - Prespectivas e Desafios: Desenvolvimento Sustentável, 
+                    Universidade Católica de Angola, Instituto Superior Dom-Bosco (2018). </p>
+              </div>
             </div>
           </div>
         </div>
@@ -508,7 +535,7 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-md-7 align-self-center text-center ">
+              <div class="mob-mo col-md-7 align-self-center text-center ">
                 <div class="trainer">
                   <figure>
                   <img src="{% static 'images/isabel.jpg'%}" alt="Image" class="img-fluid1">
@@ -526,7 +553,7 @@
                 </div>
               </div>
              
-               <div class="col-md-5 align-self-end text-center ">
+               <div class="mob-mo col-md-5 align-self-end text-center">
                 <div class="trainer">
                   <figure>
                   <img src="{% static 'images/jesus.jpg'%}" alt="Image" class=" simg">

@@ -3,17 +3,11 @@ from .models import BlogComment, BlogPost, BlogGallery, BlogReaction, BlogappPro
 from blog.form import CommentForm, MessageForm, ReplyForm
 from django.views import View
 
-
-
-def home(request):
+def dash(request):
     posts = BlogPost.objects.all() 
-    gallerys = BlogGallery.objects.all()
-    
-    #message = BlogMessage.objects.all()
     
     content = {
             'posts': posts [::-1],
-            'gallery': gallerys [::-1],
             'profile': BlogappProfile.objects.all(),
             'project': BlogProject.objects.all(),
             'reaction': BlogReaction.objects.all()
@@ -38,6 +32,46 @@ def home(request):
         #formR = reactionForm(None)
         content['form'] = form
        # content['formR'] = formR        
+
+    
+
+    return render(request, 'index 2.html', content)
+
+
+
+def home(request):
+    posts = BlogPost.objects.all() 
+    gallerys = BlogGallery.objects.all()
+    
+    #message = BlogMessage.objects.all()
+    
+    content = {
+            'posts': posts [::-1],
+            'gallery': gallerys [::-1],
+            'profile': BlogappProfile.objects.all(),
+            'project': BlogProject.objects.all(),
+            'reaction': BlogReaction.objects.all()
+    }
+
+    # if request.method == "POST":
+    #     form = MessageForm(request.POST)
+    #     #formR = reactionForm(request.POST, None)
+    #     if form.is_valid():
+    #         form.save()
+    #         form = MessageForm()
+    #         #formR = reactionForm(None)
+	# 		#messages.success(request, f' Tua mensagem foi enviada com sucesso !')
+    #         return redirect('home')
+    #     else:
+    #         form = MessageForm()
+    #         #formR = reactionForm(None)
+    #         content['form'] = form
+    #         #content['formR'] = formR
+    # else:
+    #     form = MessageForm()
+    #     #formR = reactionForm(None)
+    #     content['form'] = form
+    #    # content['formR'] = formR        
 
     return render(request, 'index.html', content)
 
@@ -79,24 +113,25 @@ def home(request):
 
 
 def pub(request, post_id):
-    comment = BlogComment.objects.filter(parent=None).order_by('-id')
+    #comment = BlogComment.objects.filter(parent=None).order_by('-id')
     posts = BlogPost.objects.get(id = post_id)
-    
+    p = BlogPost.objects.all()
 
     content = {
         'post_id': post_id,
         'posts': posts,
-        'comment': comment
+        'p': p
     }
     
     if request.method == "POST":
-        form = CommentForm(post_id, request.POST)
-        formReply = ReplyForm(post_id, request.POST)
+        form = MessageForm(post_id, request.POST)
+        # form = CommentForm(post_id, request.POST)
+        # formReply = ReplyForm(post_id, request.POST)
         
-        nome = request.POST.get('nome')
-        mensagem = request.POST.get('mensagem')
-        post = request.POST.get('post')
-        parent_id = request.POST.get('parent_id')
+        # nome = request.POST.get('nome')
+        # mensagem = request.POST.get('mensagem')
+        # post = request.POST.get('post')
+        # parent_id = request.POST.get('parent_id')
 
         # is_dislike = False
 
@@ -122,29 +157,39 @@ def pub(request, post_id):
         #     posts.likes.remove(request.user)
 
 
+        if form.is_valid():
+        # if form.is_valid() or formReply.is_valid:
+            # if parent_id:
+            #     co_set = BlogComment.objects.get(id=parent_id)
+            #     reply = BlogComment.objects.create(nome=nome, mensagem=mensagem, post=post, parent=co_set)
+            #     reply.save()
+            # else:
+            #     form.save()
+            #     form = CommentForm(post_id)
+            #     content['form'] = form
+            #     content['formReply'] = formReply
 
-        if form.is_valid() or formReply.is_valid:
-            if parent_id:
-                co_set = BlogComment.objects.get(id=parent_id)
-                reply = BlogComment.objects.create(nome=nome, mensagem=mensagem, post=post, parent=co_set)
-                reply.save()
-            else:
-                form.save()
-                form = CommentForm(post_id)
-                content['form'] = form
-                content['formReply'] = formReply
+
 			#messages.success(request, f' Tua mensagem foi enviada com sucesso !')
+
+            form.save()
+            form = MessageForm(post_id)
             return redirect('pub', post_id)
         else:
-            form = CommentForm(post_id)
-            formReply = ReplyForm(post_id)
+            form = MessageForm(post_id)
             content['form'] = form
-            content['formReply'] = formReply
+            #content['formR'] = formR
+            # form = CommentForm(post_id)
+            # formReply = ReplyForm(post_id)
+            # content['form'] = form
+            # content['formReply'] = formReply
     else:
-        form = CommentForm(post_id)
-        formReply = ReplyForm(post_id)
+        form = MessageForm(post_id)
         content['form'] = form
-        content['formReply'] = formReply          
+        # form = CommentForm(post_id)
+        # formReply = ReplyForm(post_id)
+        # content['form'] = form
+        # content['formReply'] = formReply          
 
     return render(request, 'page.html', content)
 

@@ -70,7 +70,7 @@
           <div class="col-12 col-md-10 d-none d-xl-block">
             <nav class="site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">           
-                <li><a href="{% url 'home' %}" class="nav-link">Página Principal</a></li>        
+                <li><a href="{% url 'home' %}" class="nav-link"><span class="icon-home ico-size">  Voltar</span></a></li>      
               </ul>
             </nav>
           </div>
@@ -88,6 +88,64 @@
        </div>
     </div>
   </section> 
+
+
+  <section class="site-section bg-light block-13" id="project-section" data-aos="fade">
+    <div class="container">
+      <div  data-aos="fade-up" data-aos-delay="200" style="
+      height: 225px;
+  ">
+        <div class="owl-carousel nonloop-block-13">
+          
+          {% for post in p %}
+              <div>
+                <div class="block-testimony-1 text-center">
+                  
+                  <blockquote class="mb-4">
+                    <h3><strong><p class="rodape">&ldquo;{{post.titulo}} </p></strong></h3>
+                    <!-- <p>&ldquo;The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. She packed her seven versalia, put her initial into the belt and made herself on the way.&rdquo;</p> -->
+                    {% if post.ficheiro == "none" %}
+                      <p class="rodape"><a href="{{ post.referencia }}" target="" class="btn btn-primary">Ler</a></p></blockquote>
+                    {%else%}
+                      <p class="rodape"><a href="{% url 'pub' post_id=post.id %}" target="" class="btn btn-primary">Ler</a></p></blockquote>
+                    {%endif%}
+                  </blockquote>
+  
+                  <figure>
+                    <img src="{{post.imagem.url}}" alt="Image" class="img-fluid rounded-circle mx-auto">
+                  </figure>
+                </div>
+              </div>
+  
+  
+            
+          <!-- <div>
+            <div class="block-testimony-1 text-center">
+
+                <div class="col-md-6 mb-4" data-aos="fade-up"  data-aos-delay="">
+                  <div class="d-lg-flex blog-entry">
+                    <figure class="mr-4">
+                      <img src="{{post.imagem.url}}" class="img-fluid rounded-circle mx-auto">
+                    </figure>
+                    <div class="blog-entry-text">
+                      <blockquote class="mb-4"><p>{{ post.titulo }}</p>
+                        {% if post.ficheiro == "none" %}
+                          <p><a href="{{ post.referencia }}" target="" class="btn btn-primary">Ler</a></p></blockquote>
+                        {%else%}
+                          <p><a href="{% url 'pub' post_id=post.id %}" target="" class="btn btn-primary">Ler</a></p></blockquote>
+                        {%endif%}
+                    </div>
+                  </div>
+                </div>
+                
+            </div>
+          </div> -->
+          {%endfor%}
+          
+        </div>
+      </div>
+    </div>
+  </section>
   
   <section class="site-section ">
     <div class="container">
@@ -109,7 +167,7 @@
           </div> -->
 
           <div class=" intro-text">
-            <div style="margin-left: -7px; margin-right: -7px; width: 793px; height: 1000px;">
+            <div class="mob-co">
               <div id="Iframe-Master-CC-and-Rs" class="set-margin set-padding set-border set-box-shadow center-block-horiz">
                 <div class="responsive-wrapper responsive-wrapper-wxh-572x612" style="-webkit-overflow-scrolling: touch; overflow: auto;">
                     <iframe src="{% url 'home' %}media/{{posts.ficheiro}}#toolbar=0" frameborder="0"> 
@@ -120,322 +178,87 @@
           </div>
          </div>
       
-         <!-- 
-         <div class="col-md-7 align-self-center text-center text-md-left">
-          <div class=" intro-text">
-            <div class="pubsize ">
-              mr-auto text-lg-left 
-              <div class="frame">
-                <iframe class="responsive-frame" src="{% url 'home'  %}media/{{posts.ficheiro}}#toolbar=0" frameborder="0"></iframe>
-              </div>
-               
-            </div>    
-          </div>
-         </div>
-         -->
+        
          <div class="col-md-5 align-self-end text-center text-md-right">
-          
-          <!-- <div class="col-md-5 align-self-end text-center text-md-right commentSection"> -->
-            <!-- <div class="mb-4 mb-lg-0 pubsize order-lg-2 ">   -->
-              <!-- <div class="container mb-5 mt-5"> -->
               <div class="card">
-                  <div class="row">
-                      <div class="col-md-12">
-                        <div style="margin-left: 52px;margin-right: -18px;margin-bottom: 25px;">
-                        <div class="comment-form-wrap commentForm bg-primary" style="
-                        width: 266px;
-                        height: 190px;">
-                          <form class="p-5comment contact-form" method="POST">
+                <div class="mob-co2">
+                <div class="row">
+
+                  
+                  <!-- <div class="sidebar-box">
+                    <div class="categories">
+                      <h3>Publicações</h3>
+                      {% for post in p %}
+                        {% if post.ficheiro != "none" %}
+                          <li><a href="{% url 'pub' post_id=post.id %}">{{post.titulo}}</a></li>
+                        {%endif%}
+                      {%endfor%}
+                    </div>
+                  </div> -->
+
+                  <div class="row"> 
+                    <div class="container">
+                      <div class="row">
+                        
+                        <!-- <button type="button" class="btn btn-primary" id="liveAlertBtn">Show live alert</button> -->
+                        <div class="comment-form">
+                          <div id="liveAlertPlaceholder"></div>
+                        <div class="bg-primary comment-form">
+                          <form method="post" class="p-5 contact-form">
                             {% csrf_token %} 
-                            <div class="form-group">
-                              {{form.nome}}
+                            <h2 class="h4 mb-5 heading"></h2> 
+
+                            <div class=" form-group">
+                              <div class=" mb-3 mb-md-0">
+                               
+                                {{form.nome}}
+                              </div>
                             </div>
-                            <div class="form-group">
-                              {{form.mensagem}}
-                              {{form.post}}
+              
+                            <div class="row form-group">
+                              
+                              <div class="col-md-12">
+                      
+                                {{form.email}}
+                              </div>
                             </div>
-                              <input type="submit" value="Comentar" class="btn btn-dark btn-md text-white">
+
+                            <div class="row form-group">
+                              <div class="col-md-12">
+                                
+                                {{form.mensagem}}
+                                {{form.post}}
+                              </div>
+                            </div>
+              
+                            <div class="row form-group">
+                              <div class="col-md-12">
+                                <input type="submit" value="Enviar" class="btn btn-dark btn-md text-whitebtn btn-primary" id="liveAlertBtn">
+                              </div>
                             </div>
                           </form>
                         </div>
-                      </div>  
-                          <!-- <h3 class="text-center mb-5"> Nested comment section </h3> -->
-                          
-                          <div class="row">
-                            
-                              <div class="col-md-12" style="margin-left: 36px;">
-                                
-                                    <!-- <div class="media" style="
-                                    width: 116%; 
-                                "> -->
-                                      <!-- <img class="mr-3 rounded-circle" alt="Bootstrap Media Preview" src="https://i.imgur.com/stD0Q19.jpg" /> -->
-                                      <div class="media-body">  
-                                      <div class="comments" style="
-                                      width: 100%;
-                                      ">
-                                        <!-- <ul> -->
-                                          {% for comments in comment %}
-                                          {% if comments.post == post_id|add:"0" %}
-                                          <div class="commentField bg-comment" style="
-                                          width: 73%;">
-                                            <div class="row">  
-                                                <div class="media mt-4"> 
-                                                  <a class="pr-3" href="#">
-                                                    <img class="rounded-circle" alt="Bootstrap Media Another Preview" src="https://i.imgur.com/xELPaag.jpg" />
-                                                  </a>
-                                                  <div class="col-8 d-flex" style="
-                                                  left: -28px;">
-                                                      <h6>{{comments.nome}}</h6> <span>- 2 hours ago</span>
-                                                  </div>
-                                                  <div class="col-4">
-                                                      <!-- <div class="pull-right reply"> <a href="#"><span><i class="fa fa-reply"></i> Responder</span></a> </div> -->
-                                                      <div class="pull-right reply">
-                                                        <a  data-bs-toggle="collapse" href="#call{{comments.id}}" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                                          <span><i class="fa fa-reply"></i> Responder</span>
-                                                        </a>
-                                                        
-                                                      </div>
-                                                  </div>
-                                                </div> 
-                                            </div>                                        
-                                            <div class="pcomment"> 
-                                              <p>{{comments.mensagem}}</p>
-                                            </div>
-                                            
-                                            <!-- <div class="col-md-12Comment">        
-                                              <div class="collapse" id="collapseExample">
-                                                <div class="card card-body">
-                                                  Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
-                                                </div>
-                                              </div>
-                                            </div>   -->
-                                          </div>
-
-                                          
-                                          <div class="col-md-12 collapse" id="call{{comments.id}}">
-                                            <div style="margin-left: 23px;margin-right: -18px;margin-bottom: 25px;">
-                                            <div class="comment-form-wrap commentFormReply bg-primary" style="width: 300px;height: 45px;">
-                                              <form class="p-5comment contact-form" method="POST">
-                                                {% csrf_token %} 
-                                                <div class="form-comment">
-                                                  {{formReply.nome}}
-                                                 <input type="hidden" name="parent_id" value="{{comments.id}}">
-                                                </div>
-                                                <div class="form-comment2">
-                                                  {{formReply.mensagem}} 
-                                                  {{formReply.post}}  
-                                                </div >
-                                                <div class="resp-icon"><span class="icon-play"></span></div>
-                                                <div class="form-comment3">
-                                                  <input type="submit" value="" class="btn-rep btn-transp btn-md text-white">
-                                                </div>
-                                                </div>
-                                              </form>
-                                            </div>
-                                          </div>  
-                                          
-                                          {% for reply in comments.replies.all %}
-                                          
-                                          <div class="commentFieldReply bg-commentReply collapse" style="
-                                          width: 86%;" id="call{{comments.id}}">
-                                            <div class="row">  
-                                                <div class="media mt-4"> 
-                                                  <a class="pr-3" href="#">
-                                                    <img class="rounded-circle" alt="Bootstrap Media Another Preview" src="https://i.imgur.com/xELPaag.jpg" />
-                                                  </a>
-                                                  <div class="col-8 d-flex">
-                                                      <h6>{{reply.nome}}</h6> <span>- 2 hours ago</span>
-                                                      <p>{{comments.replies.count}}</p>
-                                                  </div>
-                                                  <div class="col-4">
-                                                      <!-- <div class="pull-right reply"> <a href="#"><span><i class="fa fa-reply"></i> Responder</span></a> </div> -->
-                                                      <div class="pull-right reply">
-                                                        <!-- <a class="collapsed" data-bs-toggle="collapse" href="#call{{comment.id}}" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                                          <span><i class="fa fa-reply"></i> Responder</span>
-                                                        </a> -->
-                                                      </div>
-                                                  </div>
-                                                </div> 
-                                            </div>                                        
-                                            <div class="pcomment"> 
-                                              <p>{{reply.mensagem}}</p>
-                                            </div>
-                                            
-                                            <!-- <div class="col-md-12Comment">        
-                                              <div class="collapse" id="collapseExample">
-                                                <div class="card card-body">
-                                                  Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
-                                                </div>
-                                              </div>
-                                            </div>   -->
-                                          </div>
-                                          
-                                          {%endfor%} 
-                                          {%endif%}
-                                          {%endfor%} 
-
-                                            
-                                           
-                                        <!-- </ul> -->
-                                      </diV>
-                                      
-                                            <!-- It is a long established fact that a reader will be distracted by the readable content of a page.  -->
-                                            
-                                            
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                   
-                                </div>
-                              </div>
-                            </div>
-                            
-                          </div>
-                        </div>
-                        </div>
                       </div>
+                      </div>
+                    </div>
+                    </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-
-
-         <!-- <div class="row-pub"> 
-         <div class="col-md-5 align-self-end text-center text-md-right commentSection">
-          <div class="mb-4 mb-lg-0 pubsize order-lg-2 ">  
-            <div class="pt-5"> 
-              <div id="comments">
-                <ul>
-                  {% for comments in comment %}
-                    {% if comments.post == post_id|add:"0" %}
-                    <li class="commentField bg-comment">
-                      <div class="comment-body">
-                        <p id="pageP">{{comments.nome}}</p>
-                        <p id="page"> {{comments.mensagem}}</p>
-                      </div>
-                    </li>
-                    {%endif%}
-                  {%endfor%}
-                </ul>
-                <!-- END comment-list  
-              </div>
-              <div class="comment-form-wrap commentForm bg-primary">
-                <form class="p-5comment contact-form" method="POST">
-                  {% csrf_token %} 
-                  <div class="form-group">
-                    {{form.nome}}
-                  </div>
-                  <div class="form-group">
-                    {{form.mensagem}}
-                    {{form.post}}
-                  </div>
-                  <div class="col-md-12Comment">
-                    <input type="submit" value="Comentar" class="btn btn-dark btn-md text-white">
-                  </div>
-                </form>
-              </div>  
-          </div> -->
-          
         </div>
       </div>
     </div>
   </section> 
-
-
-<!-- 
-  
-  <section class="site-section">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-5 mr-auto text-lg-right">
-          <iframe src="{% url 'home'  %}media/{{posts.ficheiro}}#toolbar=0" width="800px" height="800px" frameborder="0"></iframe>
-        </div>
-
-        <div class="mb-4 mb-lg-0 col-lg-6 order-lg-2">  
-          <div class="pt-5">
-            <div id="comments">
-              <ul>
-                {% for comments in comment %}
-                  {% if comments.post == post_id|add:"0" %}
-                  <li class="comment" style="list-style-type: none;">
-                    <div class="comment-body">
-                      <p>{{comments.nome}}</p>
-                      <p id="pageP"> {{comments.mensagem}}</p>
-                      <!-- <p><a href="#" class="reply">Reply</a></p> -->
-                   
-                    <!-- </div> -->
-  
-                    <!-- <ul class="children">
-                      <li class="comment" style="list-style-type: none;">
-                        <div class="comment-body">
-                          <h4>Jean Doe</h4>
-                          <p id="pageP">tas earum impedit necessitatibus, nihil?</p>
-                          <p><a href="#" class="reply">Reply</a></p>
-
-                        </div>
-                      </li>
-                    </ul> -->
-                  <!-- </li>
-                  {%endif%}
-                {%endfor%}
-              </ul>
-              <!-- END comment-list -->  
-            <!-- </div>
-            <div class="comment-form-wrap ">
-              <form method="POST">
-                {% csrf_token %} 
-                <div class="form-group">
-                  {{form.nome}}
-                </div>
-                <div class="form-group">
-                  {{form.mensagem}}
-                  {{form.post}}
-                </div>
-                <div class="form-group">
-                  <input type="submit" value="Comentar" class="btn btn-primary">
-                </div>
-              </form>
-            </div>
-          </div>
-        </div> -->
-        <!-- </div>
-      </div>
-    </div>  
-  </section>  -->
-
   <footer class="site-footer">
     <div class="container">
-      <!-- <div class="row">
-        <div class="col-md-9">
-          <div class="row">
-             <div class="col-md-3">
-              <h2 class="footer-heading mb-4">Segue-me</h2>
-              <a href="#" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
-              <a href="#" class="pl-3 pr-3"><span class="icon-linkedin"></span></a>
-            </div> 
-            <div class="col-md-3">
-              <h2 class="footer-heading mb-4">Telefone</h2>
-              <span>&emsp;&emsp;+244992360149</span><br>
-            </div>
-            <div class="col-md-3">
-              <h2 class="footer-heading mb-4">Email</h2>
-              <span>fran.iuris19@gmail.com</span>
-            </div>
-          </div>
-          
-        </div>
-        
-      </div> -->
     
       <div class="row mt-5 text-center">
         <div class="col-md-12">
           <p class="copyright" style="text-align: center; "><small>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved </small></p>
-          <!-- <div class="border-top pt-5">
-            <p class="copyright"><small>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved </small></p>
-          </div> -->
+
         </div>
         
       </div>
@@ -459,6 +282,7 @@
 
   
   <script src="{% static 'js/main.js' %}"></script>
+  <script src="{% static 'js/bootstrap.js' %}"></script>
 
   
   </body>

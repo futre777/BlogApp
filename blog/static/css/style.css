@@ -765,7 +765,7 @@ body:after {
   .block-13 .owl-nav, .slide-one-item .owl-nav {
     position: relative;
     position: absolute;
-    bottom: -90px;
+    bottom: -22px;
     left: 50%;
     -webkit-transform: translateX(-50%);
     -ms-transform: translateX(-50%);
@@ -1695,13 +1695,17 @@ body:after {
     opacity: 0; } }
 
 /* Blog */
-.sidebar-box {
-  margin-bottom: 30px;
+/* .sidebar-box {
+  margin-bottom: 230px;
+  margin-top: 10px;
   padding: 25px;
-  font-size: 15px;
-  width: 100%;
+  font-size: 11px;
   float: left;
-  background: #fff; }
+  background: #fff;
+  text-align: left;
+  margin-left: -61px;
+  width: 100%;
+} */
   .sidebar-box *:last-child {
     margin-bottom: 0; }
   .sidebar-box h3 {
@@ -1903,15 +1907,17 @@ figure figcaption {
 .block_service img {
   max-width: 164px;
   margin-bottom: 28px;
-  height: 115px;
+  /* height: 115px; */
   position: relative;
  
 }
 
 .block_service h3 {
-  font-size: 1.3rem;
+  font-size: 0.9rem;
   margin-bottom: 1rem;
-  color: #000; }
+  color: #000; 
+  text-align: center;
+}
 
 .trainers, .bg-primary {
   color: #212529; }
